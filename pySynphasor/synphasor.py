@@ -307,38 +307,54 @@ freq_type = 0
 
 
 def set_cfg_data(pkt):
-    cfg = pkt['synphasor_cfg2']
-    
-    pmu_count =  cfg.num_pmu
-    phasor_count = cfg.pmu[0].phnmr 
-    analog_count = cfg.pmu[0].annmr      
-    digital_count = cfg.pmu[0].dgnmr      
-    analog_type = cfg.pmu[0].analog    
-    phasor_type =cfg.pmu[0].phasor_dtype
-    freq_type = cfg.pmu[0].freq 
-    # print("Number of PMU: ",pmu_count)     
+    global pmu_count, phasor_count, analog_count, digital_count, analog_type, phasor_type, freq_type
 
-#pkt should input of length_from function. 
+    cfg = pkt['synphasor_cfg2']
+
+    pmu_count = cfg.num_pmu
+    phasor_count = cfg.pmu[0].phnmr
+    analog_count = cfg.pmu[0].annmr
+    digital_count = cfg.pmu[0].dgnmr
+    analog_type = cfg.pmu[0].analog
+    phasor_type = cfg.pmu[0].phasor_dtype
+    freq_type = cfg.pmu[0].freq
+
+
+# pkt should input of length_from function.
 def get_ph_count(pkt):
+    global phasor_count
     return phasor_count
 
+
 def get_anlog_count(pkt):
+    global analog_count
     return analog_count
 
+
 def get_digtal_count(pkt):
+    global digital_count
     return digital_count
 
+
 def get_pmu_count(pkt):
+    global pmu_count
     return pmu_count
+
 
 # Bit 1: 0 = phasors 16-bit integer, 1 = floating point
 def get_phasor_type(pkt):
+    global phasor_type
     return phasor_type
-#FREQ/DFREQ format flag | 0 = 16-bit integer, 1 = float  
+
+
+# FREQ/DFREQ format flag | 0 = 16-bit integer, 1 = float
 def get_freq_type(pkt):
+    global freq_type
     return freq_type
 
+
 def get_analog_type(pkt):
+    global analog_type
     return analog_type
 
 
